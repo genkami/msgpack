@@ -54,9 +54,6 @@ func (e *Encoder) encodeStrLen(l int) error {
 	if l < 32 {
 		return e.writeCode(codes.FixedStrLow | codes.Code(l))
 	}
-	if l < 256 {
-		return e.write1(codes.Str8, uint8(l))
-	}
 	if l < 65536 {
 		return e.write2(codes.Str16, uint16(l))
 	}
